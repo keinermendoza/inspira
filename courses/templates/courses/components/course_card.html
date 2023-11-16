@@ -1,0 +1,21 @@
+{% load static %}
+
+<a href="{{curso.link}}" 
+    class="w-2/3 sm:w-5/6 flex flex-col items-center border broder-solid border-slate-900 dark:bg-black dark:border-gray-100 bg-white py-6 px-2 rounded-3xl shadow-xl">
+    
+    <img src="{{curso.imagen.url}}" alt="{{curso.nombre}}" 
+            class="w-1/2 mb-6">
+    
+    <h3 class="text-3xl sm:text-5xl text-center text-slate-900 dark:text-white">
+        {{curso.nombre}}
+    </h3>
+    <p class="mt-2 text-2xl sm:text-3xl text-center text-slate-500 dark:text-slate-400">
+        R$ {{curso.precio}}
+    </p>
+    <p class="mt-2 text-1xl sm:text-2xl text-center text-slate-500 dark:text-slate-400">
+        {{curso.promocion}}
+    </p>
+    <p class="mt-2 d-none sm:block text-lg text-center text-slate-500 dark:text-slate-400">
+        {{curso.descripcion}}
+    </p>
+</a>

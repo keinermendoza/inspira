@@ -1,0 +1,11 @@
+{% load static %}
+<section id='{{section_id}}' class="p-6 my-12 scroll-mt-20">
+    <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
+        {{section_title}}
+    </h2>
+    <ul class="list-none mx-auto my-12 flex flex-col sm:flex-row items-center gap-8">
+        {% for curso in cursos %}
+            {% include "courses/components/course_card.html" with curso=curso %}
+        {% endfor %}
+    </ul>
+</section>
