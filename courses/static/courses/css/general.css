@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Cardo';
+    src: local('Cardo'),
+         url('../fonts/Cardo-Regular.ttf') format("truetype");
+}
+
+h1, h2, h3 {
+    font-family: 'Cardo';
+}

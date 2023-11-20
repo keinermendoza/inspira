@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .section-min-height {
+        min-height: calc(80vh - 68px)
+    }
+
+    .opened-mobile-btn {
+        @apply [&>div:before]:translate-y-0
+                [&>div:before]:rotate-45
+                [&>div:after]:-translate-x-4
+                [&>div:after]:w-10
+                [&>div:before]:w-10
+                [&>div:after]:h-2
+                [&>div:before]:h-2 
+
+                [&>div:after]:translate-y-0
+                [&>div:after]:-rotate-45
+                [&>div]:bg-transparent
+                /* [&>div]:rotate-[360deg] */
+    }
+}
+.d-none {
+    display:none;
+}
+
+.grid-col-350 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}

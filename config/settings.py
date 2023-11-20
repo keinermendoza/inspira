@@ -13,7 +13,7 @@ load_dotenv(BASE_DIR.parent / 'env' / 'inspira' / '.env')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DEBUG'))
+DEBUG = int(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
 
@@ -108,9 +108,12 @@ AUTH_USER_MODEL = 'courses.User'
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR.parent / 'inspira_assets'
+STATICFILES_DIRS = [
+    BASE_DIR / "assets",
+]
+STATIC_ROOT = 'static/'
 MEDIA_ROOT = 'media/'
 
 # Default primary key field type

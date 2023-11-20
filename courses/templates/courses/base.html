@@ -1,16 +1,41 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="sm:scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'img/site.webmanifest' %}">
+    <meta property="author" content="Keiner Mendoza. https://keinermendoza.com" />
+    <meta property="og:title" content="Inspira e Creia" />
+    <meta name="twitter:title" content="Oferecemos os melhores cursos de design e decoração do mercado.
+    Para que você possa realizar e aprimorar seus empreendimentos com profissionalismo." />
 
-    <link rel="stylesheet" href="{% static 'output/tail.css' %}">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% url 'home' %}">
+    <meta property="og:title" content="Inspira e Creia">
+    <meta property="og:description" content="Oferecemos os melhores cursos de design e decoração do mercado.
+    Para que você possa realizar e aprimorar seus empreendimentos com profissionalismo.">
+    <meta property="og:image" content="https://inspiraecreia.com/static/courses/img/inspira.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{% url 'home' %}">
+    <meta property="twitter:title" content="Inspira e Creia">
+    <meta property="twitter:description" content="Oferecemos os melhores cursos de design e decoração do mercado.
+    Para que você possa realizar e aprimorar seus empreendimentos com profissionalismo.">
+    <meta property="twitter:image" content="https://inspiraecreia.com/static/courses/img/inspira.png">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'courses/img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'courses/img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'courses/img/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'courses/img/site.webmanifest' %}">
+    <link rel="stylesheet" href="{% static 'courses/css/general.css' %}">
+
+    
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'tailwind/tail.css' %}">
     <title>
         {% block "title" %}
         {% endblock "title" %}
@@ -23,21 +48,79 @@
             <span class="text-2xl font-medium">
                 <a href="#hero">🌺 Inspira e Creia</a>
             </span>
+
+
             <div>
-                {% comment %} <button id="mobile-open-btn" class="text-3xl sm:hidden focus:outline-none">&#9776</button> {% endcomment %}
-                {% comment %} <nav class="d-none sm:block space-x-10 " aria-label="main"> {% endcomment %}
-                <!-- provisional, luego crear el menu mobile -->
-                <nav class="space-x-10 " aria-label="main">
+                <!-- for simple animaton that covers all 
+                <button id="hamburger-btn" class="text-3xl md:hidden cursor-pointer"> 
+                     &#9776 
+                </button> -->
+
+                <button id="hamburger-btn" class="nav-mobile-btn relative w-8 h-8 text-3xl md:hidden cursor-pointer">
+                    <div class="bg-white w-8 h-1 rounded absolute -mt-0.5 
+                            transition-all duration-100
+                            before:transition-all before:duration-500
+                            after::transition-all after:duration-500
+                            before:content-[''] before:bg-white before:rounded
+                            before:w-8 before:h-1 before:absolute
+                            before:-translate-x-4 before:-translate-y-3
+
+                            after:content-[''] after:bg-white after:rounded
+                            after:w-6 after:h-1 after:absolute
+                            after:-translate-x-2 after:translate-y-3
+
+                            "></div>
+                </button>
+
+                <nav class="d-none md:block space-x-10 " aria-label="main">
+
                     {% for categoria in sections %}
                         <a class="hover:opacity-90" href="#{{categoria.slug}}">{{categoria.nombre}}</a>
                     {% endfor %}
+                    <!-- potential sections
+                    <a class="hover:opacity-90" href="#testimonials">Testimonials</a>
+                    <a class="hover:opacity-90" href="#contact">Contact</a> -->
                 </nav>
             </div>
 
         </section>
+
+        <!-- v1 uses top-0 for fill all the window -->
+        <section id="mobile-menu"
+                class="d-none md:hidden  absolute top-68 bg-black w-full text-5xl 
+                        flex-col justify-center origin-top animate-open-menu">
+
+            <!-- for simple animaton that covers all 
+                <button class="text-8xl self-end px-6 ">
+                &times;
+            </button> -->
+
+            
+            <nav aria-label="mobile" 
+                class="flex flex-col min-h-screen items-center py-8">
+
+                <a href="#hero"
+                    class="w-full text-center py-6 hover:opacity-70">Home</a>
+
+                {% for categoria in sections %}
+                <a  href="#{{categoria.slug}}"
+                    class="w-full text-center py-6 hover:opacity-70">{{categoria.nombre}}</a>
+                {% endfor %}
+
+                <a href="#testimonials"
+                    class="w-full text-center py-6 hover:opacity-70">Testimonials</a>
+                
+                <a href="#contact"
+                    class="w-full text-center py-6 hover:opacity-70">Contact Us</a>
+                
+            </nav>
+
+        </section>
     </header>
-    <main id="hero" class="max-w-7xl mx-auto scroll-mt-20">
-        <section class="flex flex-col-reverse justify-center sm:flex-row p-6 items-center gap-8 mb-12">
+    <main class="max-w-7xl mx-auto">
+    <!-- hero -->
+        <section id="hero" class="scroll-mt-40 flex flex-col-reverse justify-center sm:flex-row p-6 items-center
+            gap-8 mb-12 widescreen:section-min-height tallscreen:section-min-height">
             <article class="sm:w-1/2">
                 <h2 class="max-w-md text-4xl font-bold text-center md:text-5xl sm:text-left text-slate-900 dark:text-white">
                     Aproveite ao máximo <span class="text-indigo-700 dark:text-indigo-400">seu potencial</span> com nossos cursos
@@ -50,25 +133,40 @@
                     Aprender nunca foi tão fácil
                 </p>
             </article>
-            <img class="w-1/2" src="{% static 'img/inspira.png' %}" alt="">
+            <img class="w-1/2" src="{% static 'courses/img/inspira.png' %}" alt="">
         </section>
-
-        <hr class="mx-auto bg-black dark:bg-white w-1/2">
-
-        {% for categoria in sections %}
-            {% include "courses/galery-courses.html" with section_title=categoria.nombre section_id=categoria.slug cursos=categoria.cursos.all %}
-        
-            {% if foorloop is not last %}
-                <hr class="mx-auto bg-black dark:bg-white w-1/2">
-            {% endif %}
-        {% endfor %}
-
-        
-    </main>
-    {% block "main" %}
-    {% endblock "main" %}
-    <footer>
     
+    <hr class="mx-auto bg-black dark:bg-white w-1/2">
+
+    <!-- galleries by catogories -->
+    {% for categoria in sections %}
+        {% include "courses/components/galery-courses.html" with section_title=categoria.nombre section_id=categoria.slug cursos=categoria.cursos.all %}
+    
+        {% if foorloop is not last %}
+            <hr class="mx-auto bg-black dark:bg-white w-1/2">
+        {% endif %}
+    {% endfor %}
+
+    <!-- testimonials -->
+    <!-- contact -->
+
+    
+    </main>
+    <footer id="footer" class="bg-teal-700 text-xl">
+        <section class="max-w-4xl mx-auto p-4 flex flex-col sm:flex-row sm:justify-between">
+            
+            <nav aria-label="footer"
+                class="flex flex-col gap-2">
+                <h4>Seções</h4>
+                {% for categoria in sections %}
+                    <a class="hover:opacity-90" href="#{{categoria.slug}}">{{categoria.nombre}}</a>
+                {% endfor %}
+            </nav>
+            <div class="flex flex-col sm:gap-2 text-right">
+                <p class="">Inspira&Creia Copyright &copy; <span id="year">2023</span></p>
+                <p class="">All Rights Reserved</p>
+            </div>
+        </section>
     </footer>
 </body>
 </html>
