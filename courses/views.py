@@ -6,4 +6,4 @@ def home(request):
     context = {
         'sections':Categoria.objects.all()
     }
-    return render(request, 'courses/home.html', context)
+    return render(request, 'courses/base.html', context)
