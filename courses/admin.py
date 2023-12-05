@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Curso, Voto, Categoria, User
+from .models import Curso, Voto, Categoria, User, HeroImg
 
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
@@ -22,3 +22,5 @@ class CategoriaAdmin(admin.ModelAdmin):
     readonly_fields=('slug', )
 
 admin.site.register(Voto)
+admin.site.register(HeroImg)
+

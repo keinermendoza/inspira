@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load hero_img %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,27 +105,35 @@
             
             <nav aria-label="mobile" 
                 class="flex flex-col min-h-screen items-center py-8">
+            {% comment %} 
+            
+                POTENTIAL SECTIONS 
 
                 <a href="#hero"
                     class="w-full text-center py-6 hover:opacity-70">Home</a>
-
-                {% for categoria in sections %}
-                <a  href="#{{categoria.slug}}"
-                    class="w-full text-center py-6 hover:opacity-70">{{categoria.nombre}}</a>
-                {% endfor %}
 
                 <a href="#testimonials"
                     class="w-full text-center py-6 hover:opacity-70">Testimonials</a>
                 
                 <a href="#contact"
-                    class="w-full text-center py-6 hover:opacity-70">Contact Us</a>
+                    class="w-full text-center py-6 hover:opacity-70">Contact Us</a> 
+                    
+            {% endcomment %}
+
+                {% for categoria in sections %}
+                <a  href="#{{categoria.slug}}"
+                    class="w-full text-center py-6 hover:opacity-70">{{categoria.nombre}}</a>
+                {% endfor %}
                 
             </nav>
 
         </section>
     </header>
+
+
+
     <main class="max-w-7xl mx-auto">
-    <!-- hero -->
+    <!-- HERO -->
         <section id="hero" class="scroll-mt-40 flex flex-col-reverse justify-center sm:flex-row p-6 items-center
             gap-8 mb-12 widescreen:section-min-height tallscreen:section-min-height">
             <article class="sm:w-1/2">
@@ -140,7 +148,10 @@
                     Aprender nunca foi tão fácil
                 </p>
             </article>
-            <img class="w-1/2 micro:w-3/4" src="{% static 'courses/img/inspira.png' %}" alt="">
+            
+            
+
+            <img class="w-1/2 micro:w-3/4" src="{% HeroImageSource %}" alt="">
         </section>
     
     <hr class="mx-auto bg-black dark:bg-white w-1/2">

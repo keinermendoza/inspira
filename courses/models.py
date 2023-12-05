@@ -60,3 +60,7 @@ class Curso(models.Model):
         indexes = [
             models.Index(fields=["creado"])
         ]
+
+# this will be for temporal use
+class HeroImg(models.Model):
+    src = models.FileField(upload_to='hero')

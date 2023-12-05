@@ -6,7 +6,7 @@
     </h2>
     <ul class="list-none mx-auto my-12 grid-col-350 gap-8 micro:gap-4 micro:flex micro:flex-col">
         {% for curso in cursos %}
-            {% if curso.active %}
+            {% if curso.activo %}
                 {% include "courses/components/course_card.html" with curso=curso %}
             {% endif %}
         {% endfor %}
