@@ -1,4 +1,4 @@
-from django.utils.translation import gettext_lazy as _
+from collections.abc import Iterable
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import AbstractUser
@@ -8,10 +8,10 @@ class User(AbstractUser):
     pass
 
 class Categoria(models.Model):
-    nombre = models.CharField(_('Nombre'), max_length=120, unique=True)
-    slug = models.SlugField(_('Slug'), max_length=120, unique=True)
-    activa = models.BooleanField(_('Activa'), default=True)
-    creada = models.DateTimeField(_('Creada'), auto_now_add=True)
+    nombre = models.CharField(max_length=120, unique=True)
+    slug = models.SlugField(max_length=120, unique=True)
+    activa = models.BooleanField(default=True, verbose_name="Esta seccion esta visible")
+    creada = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.nombre
@@ -29,17 +29,17 @@ class Voto(models.Model):
         return f"Valoracion de {self.puntos} puntos"
 
 class Curso(models.Model):
-    nombre = models.CharField(_('Nombre'), max_length=120)
-    descripcion = models.TextField(_('Descripcion'), null=True, blank=True)
-    imagen = models.ImageField(_('Imagen'), upload_to='imagen_curso')
-    creado = models.DateTimeField(_('Creado'), auto_now_add=True)
-    actualizado = models.DateTimeField(_('Actualizado'), auto_now=True)
-    link = models.URLField(_('Link'), max_length=300)
-    precio = models.DecimalField(_('Precio'), max_digits=6,
+    nombre = models.CharField(max_length=120)
+    descripcion = models.TextField(null=True, blank=True)
+    imagen = models.ImageField(upload_to='imagen_curso')
+    creado = models.DateTimeField(auto_now_add=True)
+    actualizado = models.DateTimeField(auto_now=True)
+    link = models.URLField(max_length=300, verbose_name='link del curso en hotmart')
+    precio = models.DecimalField(max_digits=6,
                               decimal_places=2)
     
-    activo = models.BooleanField(_('Activo'), default=True)
-    promocion = models.CharField(_('Promocion'), max_length=100, null=True, blank=True)
+    activo = models.BooleanField(default=True)
+    promocion = models.CharField(max_length=100, null=True, blank=True, verbose_name='si se puede pagar en cuotas. cuantas y a como son las cuotas? ')
 
     categoria = models.ForeignKey(Categoria, related_name='cursos',
                                   on_delete=models.PROTECT)
@@ -48,7 +48,7 @@ class Curso(models.Model):
 
 
     def __str__(self) -> str:
-        return f"Curos: {self.nombre}"
+        return self.nombre
     
     @property
     def short_descripcion(self):
@@ -63,8 +63,7 @@ class Curso(models.Model):
 
 # this will be for temporal use
 class HeroImg(models.Model):
-    src = models.FileField(_('Imagen'), upload_to='hero')
-
+    src = models.FileField(upload_to='hero')
     class Meta:
         verbose_name = 'Logo'
-        # plural_verbose_name = 'Logo'
+        verbose_name_plural = 'Logo'

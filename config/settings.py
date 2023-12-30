@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'courses',
 
     # third
-    'rosetta',
+    # 'rosetta',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +76,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR.parent/ 'data' / 'inspira.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR.parent/ 'data' / 'inspira.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -106,15 +106,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es'
 
-LANGUAGES = [
-    ('es', _('Spanish')),
-    ('en', _('English')),
-]
+# LANGUAGES = [
+#     ('es', _('Spanish')),
+#     ('en', _('English')),
+# ]
 
-# for translation files
-LOCALE_PATHS = [
-    BASE_DIR / 'locale',
-]
+# # for translation files
+# LOCALE_PATHS = [
+#     BASE_DIR / 'locale',
+# ]
 
 TIME_ZONE = 'America/Manaus'
 
