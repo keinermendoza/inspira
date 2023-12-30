@@ -1,4 +1,4 @@
-courses/migrations
+courses/migrations/
 node_modules
 venv
 db.sqlite3
